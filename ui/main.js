@@ -1,6 +1,6 @@
-var button=document.getElementById('counter');
+var submit=document.getElementById('submit_btn');
 
-button.onclick = function() {
+submit.onclick = function() {
     var request = new XMLHttpRequest();
     
     request.onreadystatechange=function(){
@@ -8,16 +8,22 @@ button.onclick = function() {
      if (request.readystate === XMLHttpRequest.Done) {
          
          if(request.status === 200) {
-            var counter = request.responseText;
-            var span = document.getElementById('count');
+            var names = request.responseText;
+            names=JSON.parse(names);
+            var list="";
             span.innerHTML=counter.toString();
          }
-         
+         for(var i=0;i<names.length;i++){
+             list='<li>'+names[i]+'</li>';
+             
+         }
+          var ul = document.getElementById('namelist');
+          ul.innerHTML=list;
      }
 
     };
     
-    request.open('GET','http://pradeepsaba.imad.hasura-app.io/counter',true)
+    request.open('GET','http://pradeepsaba.imad.hasura-app.io/names/:name',true)
     request.send(null);
     
 };
