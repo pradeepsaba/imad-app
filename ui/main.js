@@ -22,8 +22,9 @@ submit.onclick = function() {
      }
 
     };
-    
-    request.open('GET','http://pradeepsaba.imad.hasura-app.io/names/:name',true)
+    var newInput=document.getElementById('name');
+    var name=newInput.value;
+    request.open('GET','http://pradeepsaba.imad.hasura-app.io/submit-name?:name='+names,true)
     request.send(null);
     
 };
