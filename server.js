@@ -10,7 +10,7 @@ app.get('/', function (req, res) {
 });
 
 var names=[];
-app.get('/submit-name', function (req, res) {
+app.get('/:submit-name', function (req, res) {
   var name=req.query.name;
   names.push(name);
   res.send(JSON.stringify(names));
@@ -127,7 +127,7 @@ return htmlTemplate;
 
 app.get('/:articlename', function (req, res) {
     var articlename=req.params.articlename;
-  res.send(createTemplate(articles[articlename]));
+    res.send(createTemplate(articles[articlename]));
 });
 
 
